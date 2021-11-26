@@ -4,6 +4,11 @@ RUN yum -y install python3-pip python36 && \
     rm -Rf /var/cache/yum && \
     pip3 install --no-cache-dir bottle
 
+# mandatory K8S labels
+LABEL io.k8s.description="Simple web app" \
+      io.k8s.display-name="My bottle app" \
+      io.openshift.expose-services="5000:http" \
+      io.openshift.tags="html,apache"
 COPY app.py  /usr/src/app/
 
 # tell the port number the container should expose
